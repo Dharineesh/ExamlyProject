@@ -8,7 +8,18 @@ const {uniqueEmail} = require('./externalFunctions');
 
 insert.use(bodyparser.urlencoded({extended:true}));
 insert.post('/',(req,res) => {
-    const post = new Post1(req.body);
+    // const post = new Post1(req.body);
+    //     post.save(function(err,result){
+    //         if(err){
+    //             return res.status(400).json({
+    //                 error : err
+    //             });
+    //         }
+    //         res.status(200).sendFile(path.resolve('./Apps/index.html'));
+    // });
+    const email = req.body.email;
+    uniqueEmail(email).then((result)=>{
+        const post = new Post1(req.body);
         post.save(function(err,result){
             if(err){
                 return res.status(400).json({
@@ -16,24 +27,13 @@ insert.post('/',(req,res) => {
                 });
             }
             res.status(200).sendFile(path.resolve('./index.html'));
+        });
+    }).catch((error) =>{
+        return res.json({
+            status : 401,
+            message : "Email already taken"
+        });
     });
-    // const email = req.body.email;
-    // uniqueEmail(email).then((result)=>{
-    //     const post = new Post1(req.body);
-    //     post.save(function(err,result){
-    //         if(err){
-    //             return res.status(400).json({
-    //                 error : err
-    //             });
-    //         }
-    //         res.status(200).sendFile(path.resolve('./index.html'));
-    //     });
-    // }).catch((error) =>{
-    //     return res.json({
-    //         status : 401,
-    //         message : "Please ful unique email"
-    //     });
-    // });
 });
 
 verify.use(bodyparser.urlencoded({extended:true}));
@@ -45,7 +45,7 @@ verify.post('/',(req,res) => {
     post.then((post) => {
         // console.log(post.password);
         if(post.password==pass){
-            res.sendFile(path.resolve('./home.html'));
+            res.sendFile(path.resolve('./Apps/home.html'));
         }
         else{
             res.json({

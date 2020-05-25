@@ -11,10 +11,10 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/registration',(req,res) => {
-    res.sendfile("./registration.html");
+    res.sendfile("./Apps/registration.html");
 })
 app.get('/home',(req,res) => {
-    res.sendfile("./home.html")
+    res.sendfile("./Apps/home.html")
 })
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
