@@ -9,7 +9,6 @@ module.exports.uniqueEmail = (email) =>{
             }
             else{
                 if(email_result!=null){
-                    // console.log("result_error");
                     reject();
                 }
                 else{

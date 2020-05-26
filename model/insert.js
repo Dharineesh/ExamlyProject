@@ -19,5 +19,4 @@ const Schema = new mongoose.Schema({
         minlength : 8
     }
 });
-
 module.exports = mongoose.model('Post1',Schema);

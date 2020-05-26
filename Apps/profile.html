@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+    <style>
+        .navbar {
+            height: 60px;
+            background-color: #333;
+            color: whitesmoke;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <body >
+        <div>
+            <ul class="nav justify-content-center" style="margin-left:30%; margin-right: 30%;margin-top: 2%;"">
+                <li class="nav-item">
+                  <a class="nav-link active" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/profile" tabindex="-1" aria-disabled="true">Profile</a>
+                </li>
+              </ul>
+            <header class="navbar" style="margin-left: 40%; margin-right:40% ;">Profile</header>
+            <center><img src="./images/avatar.png" alt="Profile Picture" height="150px" width="150px"></center>
+        </div>
+        <form method="POST" action="/updateProfile" style="margin-right: 35%;margin-left: 35%;">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputFirstName">Roll Number</label>
+                  <input type="number" name="rollnumber" class="form-control" id="inputRollNumber">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputLastName">Date of Birth</label>
+                  <input type="date" name="dob" class="form-control" id="inputDOB">
+                </div>
+              </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">College</label>
+              <input type="text" name="College" class="form-control" id="collegeName" aria-describedby="emailHelp">
+            </div>
+            <div class="form-row">
+                     <label for="exampleInputEmail1">Year of passing</label>
+                    <div class="input-group mb-3">
+                        <select class="custom-select" name="yearOfPassing"id="inputGroupSelect02">
+                          <option selected>--Select--</option>
+                          <option value="2021">2021</option>
+                          <option value="2022">2022</option>
+                          <option value="2023">2023</option>
+                          <option value="2024">2024</option>
+                        </select>
+                      </div>
+            </div>
+                <div class="form-group ">
+                  <label for="inputLastName">CGPA</label>
+                  <input type="text" name="cgpa" class="form-control" id="inputDOB">
+                
+              </div>
+            <button type="submit" class="btn btn-primary">Update</button>   <a href="/show">  Show Profile</a> 
+          </form>
+    </body>
+</html>
