@@ -26,4 +26,4 @@ app.use('/insert',insert);
 app.use('/verify',verify);
 app.use('/updateProfile',updateProfile);
 app.use('/showProfile',showProfile);
-app.listen(9000,'0.0.0.0');
+app.listen(process.env.PORT || 4000);
