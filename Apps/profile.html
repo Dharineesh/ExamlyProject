@@ -5,7 +5,7 @@
     </head>
     <style>
         .navbar {
-            height: 60px;
+            height: 90px;
             background-color: #333;
             color: whitesmoke;
             margin-bottom: 15px;
@@ -18,18 +18,10 @@
     </style>
     <body >
         <div>
-            <ul class="nav justify-content-center" style="margin-left:30%; margin-right: 30%;margin-top: 2%;"">
-                <li class="nav-item">
-                  <a class="nav-link active" href="/home">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/profile" tabindex="-1" aria-disabled="true">Profile</a>
-                </li>
-              </ul>
-            <header class="navbar" style="margin-left: 40%; margin-right:40% ;">Profile</header>
+            <header class="navbar" >Profile</header>
             <center><img src="./images/avatar.png" alt="Profile Picture" height="150px" width="150px"></center>
         </div>
-        <form method="POST" action="/updateProfile" style="margin-right: 35%;margin-left: 35%;">
+        <form method="POST" action="/updateProfile" style="margin-right: 35%;margin-left: 35%;margin-top: 3%;">
             <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputFirstName">Roll Number</label>
@@ -42,7 +34,7 @@
               </div>
             <div class="form-group">
               <label for="exampleInputEmail1">College</label>
-              <input type="text" name="College" class="form-control" id="collegeName" aria-describedby="emailHelp">
+              <input type="text" name="college" class="form-control" id="collegeName">
             </div>
             <div class="form-row">
                      <label for="exampleInputEmail1">Year of passing</label>
@@ -61,7 +53,18 @@
                   <input type="text" name="cgpa" class="form-control" id="inputDOB">
                 
               </div>
-            <button type="submit" class="btn btn-primary">Update</button>   <a href="/show">  Show Profile</a> 
+              <ul class="nav justify-content-center" style="margin-left:10%; margin-right: 10%; margin-top: 2%;">
+                <li class="nav-item">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/showProfile">Show Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/home">Home</a>
+                </li>
+              </ul>
+                
           </form>
     </body>
 </html>

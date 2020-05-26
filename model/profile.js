@@ -2,15 +2,19 @@ require('../db');
 const mongoose = require('mongoose');
 
 const UpdateSchema = new mongoose.Schema({
+    email : {
+        type : String,
+        required : true
+    },
     rollnumber : {
         type : Number,
         required : true
     },
     dob : {
-        type : Date,
+        type : String,
         required : true
     },
-    collegeName : {
+    college : {
         type : String,
         required : true
     },
