@@ -114,17 +114,20 @@ showProfile.get('/',(req,res) => {
 
 notify.use(bodyparser.urlencoded({extended:true}));
 notify.get('/',(req,res) => {
-    email = "dharan@gmail.com";
     const general = "generalToAll";
     const gen = notificationData.findOne({email : general}).select();
+    global.comp = "";
     gen.then((com1,err1) => {
+        function respond(data){
+            comp+="<h3>"+data.title+"</h3><h6>"+data.detail+"</h6><hr>"
+        }
         if(err1){
             res.json({
                 Message : "Currently no notification availabel!!"
             });
         }
         else{
-            const common = notificationData.findOne({email:email}).select();
+            const common = notificationData.find({email:email}).select();
             common.then((com,err) => {
                 if(err){
                     res.json({
@@ -133,7 +136,27 @@ notify.get('/',(req,res) => {
                     });
                 }
                 else{
-                    res.send(com1+com);
+                    comp+="<html><head></head><body>"
+                    comp+="<h1>General Notification</h1>"
+                    if(com1.length){
+                        for(let i=0;i<com1.length;i++){
+                            respond(com1[i]);
+                        }
+                    }
+                    else{
+                        respond(com1);
+                    }
+                    comp+="<h1>Specified Notification</h1>"
+                    if(com.length){
+                        for(let i=0;i<com.length;i++){
+                            respond(com[i]);
+                        }
+                    }
+                    else{
+                        respond(com);
+                    }
+                    comp+="</body></html>"
+                    res.send(comp);
                 }
             })
         }
