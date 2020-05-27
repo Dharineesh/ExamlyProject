@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const {insert,verify,updateProfile} = require('./controller/insert');
-const {showProfile} = require('./controller/insert');
+const {showProfile,notify} = require('./controller/insert');
 const bodyparser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -26,4 +26,5 @@ app.use('/insert',insert);
 app.use('/verify',verify);
 app.use('/updateProfile',updateProfile);
 app.use('/showProfile',showProfile);
+app.use('/notify',notify);
 app.listen(process.env.PORT || 4000);

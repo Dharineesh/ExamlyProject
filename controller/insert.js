@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const insert = express.Router();
+const notify = express.Router();
 const verify = express.Router();
 const updateProfile = express.Router();
 const showProfile = express.Router();
 const path = require('path');
+const notificationData = require('../model/notify');
 const Post1 = require('../model/insert');
 const Profile = require('../model/profile');
 const {uniqueEmail,uniqueEmail1} = require('./externalFunctions');
@@ -107,8 +109,36 @@ showProfile.get('/',(req,res) => {
             res.send(respond(result,proRes));
 
         })
-    })
+    });
 });
+
+notify.use(bodyparser.urlencoded({extended:true}));
+notify.get('/',(req,res) => {
+    email = "dharan@gmail.com";
+    const general = "generalToAll";
+    const gen = notificationData.findOne({email : general}).select();
+    gen.then((com1,err1) => {
+        if(err1){
+            res.json({
+                Message : "Currently no notification availabel!!"
+            });
+        }
+        else{
+            const common = notificationData.findOne({email:email}).select();
+            common.then((com,err) => {
+                if(err){
+                    res.json({
+                        Error : 401,
+                        Message : "Currently no notification availabel!!"
+                    });
+                }
+                else{
+                    res.send(com1+com);
+                }
+            })
+        }
+    })
+})
 module.exports = {
-    insert,verify,updateProfile,showProfile
+    insert,verify,updateProfile,showProfile,notify
 }
