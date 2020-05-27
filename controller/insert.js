@@ -43,13 +43,13 @@ verify.post('/',(req,res) => {
         else{
             res.json({
                 Error : 401,
-                Message : "Enter the correct password"
+                Message : "Enter correct password"
             });
         }
     }).catch( (err) => {
         res.json({
-            Error : 401,
-            Message : "Enter valid Email or Create new Account"
+            error : 401,
+            Message : "Enter valid email or Proceed to sign up"
         });
     })
 })
