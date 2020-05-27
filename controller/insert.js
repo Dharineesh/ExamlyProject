@@ -119,7 +119,7 @@ notify.get('/',(req,res) => {
     global.comp = "";
     gen.then((com1,err1) => {
         function respond(data){
-            comp+="<h3>"+data.title+"</h3><h6>"+data.detail+"</h6><hr>"
+            comp+="<h2>"+data.title+"</h2><h4>"+data.detail+"</h4><hr>"
         }
         if(err1){
             res.json({
@@ -136,25 +136,38 @@ notify.get('/',(req,res) => {
                     });
                 }
                 else{
-                    comp+="<html><head></head><body>"
-                    comp+="<h1>General Notification</h1>"
+                    comp+="<html><head><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\">";
+                    comp+="<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\"></head><body style =\"margin-left : 30%;margin-right : 30%; border : 1px solid black;padding : 10px;\">"
+                    comp+="<center><span class=\"fa fa-bell\" style=\"font-size:40px;color:black\"></span><h1 style=\"margin-left:7%;color : Orange;\">General Notification</h1></center>"
                     if(com1.length){
                         for(let i=0;i<com1.length;i++){
                             respond(com1[i]);
                         }
                     }
                     else{
-                        respond(com1);
+                        if(com1.title==undefined){
+                            comp+="<h2>!!!!!No General Notification!!!!!"
+                        }
+                        else{
+                            respond(com1);
+                        }
                     }
-                    comp+="<h1>Specified Notification</h1>"
+                    comp+="<center><h1 style=\"color : Orange;\">Specified Notification</h1></center>"
                     if(com.length){
                         for(let i=0;i<com.length;i++){
                             respond(com[i]);
                         }
                     }
                     else{
-                        respond(com);
+                        console.log(com);
+                        if(com.title==undefined){
+                            comp+="<h2>!!!!!No Specified Notification!!!!!"
+                        }
+                        else{
+                            respond(com);
+                        }
                     }
+                    comp+="<center><ul class=\"nav justify-content-center\" style=\"margin-top:5%;font-size:25px;\"><li class=\"nav-item\"><a class=\"nav-link active\"href=\"/home\">HOME</a></li><li class=\"nav-item\"></li></ul></center>";
                     comp+="</body></html>"
                     res.send(comp);
                 }
