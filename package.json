@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon index.js"
   },
+  "homepage": "",
   "author": "Dharan",
   "license": "ISC",
   "dependencies": {

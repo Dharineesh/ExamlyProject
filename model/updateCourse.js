@@ -6,6 +6,10 @@ module.exports = mongoose.model("CompletedCourse",{
         type : String,
         required : true
     },
+    name : {
+        type : String,
+        required : true
+    },
     course1 : {
         type : String
     },

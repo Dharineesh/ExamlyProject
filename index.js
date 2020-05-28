@@ -1,12 +1,4 @@
 const express = require('express');
-// import express from 'express';
-// import insert from './controller/insert.js';
-// import verify from './controller/insert.js';
-// import updateProfile from './controller/insert.js';
-// import showProfile from './controller/insert.js';
-// import notify from './controller/insert.js'
-// import bodyparser from 'body-parser';
-// import dotenv from 'dotenv';
 const app = express();
 const {insert,verify,updateProfile} = require('./controller/insert');
 const {showProfile,notify,updateCompletedCourse} = require('./controller/insert');

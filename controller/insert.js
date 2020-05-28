@@ -13,6 +13,7 @@ const Post1 = require('../model/insert');
 const Profile = require('../model/profile');
 const {uniqueEmail,uniqueEmail1} = require('./externalFunctions');
 global.email = undefined;
+global.na = null;
 
 insert.use(bodyparser.urlencoded({extended:true}));
 insert.post('/',(req,res) => {
@@ -120,6 +121,7 @@ notify.get('/',(req,res) => {
     const general = "generalToAll";
     // email = "dharan@gmail.com";
     const gen = notificationData.findOne({email : general}).select();
+    const completed = CompletedCourse.find
     global.comp = "";
     gen.then((com1,err1) => {
         function respond(data){
@@ -184,14 +186,22 @@ notify.get('/',(req,res) => {
 updateCompletedCourse.use(bodyparser.urlencoded({extended:true}));
 updateCompletedCourse.post('/',(req,res) => {
     email = "dharan@gmail.com";
+    const name = Post1.findOne({email : email}).select();
+    name.then((body) => {
+        na=body.firstname+" "+body.lastname;
+    });
+    console.log(na);
     const val = {
         email : email,
+        name : na,
         course1 : req.body.course1,
         course2 : req.body.course2,
         course3 : req.body.course3
-    }
+    };
+    console.log(val);
+    res.send(na);
     const post = new CompletedCourse(val);
-    const find = CompletedCourse.findOne({email : email}).select();
+    const find = CompletedCourse.findOne({email :email}).select();
     find.then((result,err) => {
         if(err){
             res.json({
@@ -200,7 +210,7 @@ updateCompletedCourse.post('/',(req,res) => {
         }
         else{
             if(result){
-                CompletedCourse.updateOne({email:email},{
+                CompletedCourse.updateOne({email : email},{
                     course1 : req.body.course1,
                     course2 : req.body.course2,
                     course3 : req.body.course3
