@@ -86,11 +86,11 @@ updateProfile.post('/',(req,res) => {
 
 showProfile.use(bodyparser.urlencoded({extended:true}));
 showProfile.get('/',(req,res) => {
-    // email="dharan@gmail.com"
+    email="dharan@gmail.com"
     function respond(result,proRes){
         var html = "<html>";
         html += "<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\"><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\"></head><body>";
-        html += "<style>.navbar {height: 90px;background-color: #333; color: whitesmoke;margin-bottom: 15px;text-align: center;font-size: 30px;display: flex;justify-content: center;align-items: center;}</style>";
+        html += "<style>.navbar {height: 90px;background-color:  #000; color: whitesmoke;margin-bottom: 15px;text-align: center;font-size: 30px;display: flex;justify-content: center;align-items: center;}</style>";
         html += "<h6 class=\"navbar\">Personal Detail</h6>"
         html += "<center><i class=\"fa fa-user\" style=\"font-size:100px;color : burlywood\"></i></center>";
         html += "<div style=\"margin-top:3%;margin-left:39%;margin-right:30%;font-size:25px;\"><label>Name            : "+result.firstname+" "+result.lastname+"</label><br>";
@@ -99,7 +99,7 @@ showProfile.get('/',(req,res) => {
         html += "<label>College         : "+proRes.college+"</label><br>";
         html += "<label>Year of Passing : "+proRes.yearOfPassing+"</label><br>";
         html += "<label>CGPA            : "+proRes.cgpa+"</label><br></div>";
-        html += "<ul class=\"nav justify-content-center\" style=\"margin-left:10%; margin-right: 10%; margin-top: 2%;font-size:25px;\"><li class=\"nav-item\"><a class=\"nav-link active\"href=\"/home\">HOME</a></li><li class=\"nav-item\"><a class=\"nav-link active\"href=\"/profile\">BACK</a></li></ul>";
+        html += "<ul class=\"nav justify-content-center\" style=\"padding-right:5px; margin-left:5%; margin-right: 5%; margin-top: 2%;font-size:25px;\"><li style=\"padding-right:20px;\" class=\"nav-item\"><a class=\"btn btn-success\"href=\"/home\">HOME</a></li><li class=\"nav-item\"><a class=\"btn btn-primary\"href=\"/profile\">BACK</a></li></ul>";
         html += "</body></html>";
         return (html);
     }
@@ -170,7 +170,7 @@ notify.get('/',(req,res) => {
                             respond(com);
                         }
                     }
-                    comp+="<center><ul class=\"nav justify-content-center\" style=\"margin-top:5%;font-size:25px;\"><li class=\"nav-item\"><a class=\"nav-link active\"href=\"/home\">HOME</a></li><li class=\"nav-item\"></li></ul></center>";
+                    comp+="<center><ul class=\"nav justify-content-center\" style=\"margin-top:5%;font-size:25px;\"><li class=\"nav-item\"><a class=\"btn btn-primary\"href=\"/home\">HOME</a></li><li class=\"nav-item\"></li></ul></center>";
                     comp+="</div></body></html>"
                     res.send(comp);
                 }

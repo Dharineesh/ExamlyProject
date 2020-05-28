@@ -36,11 +36,53 @@
       }
       .row.content {height:auto;} 
     }
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+
+    .price {
+        color: grey;
+        font-size: 22px;
+    }
+
+    .card button {
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+        }
+
+    .card button:hover {
+        opacity: 0.7;
+    }
+    .checked {
+        color: orange;
+    }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+        .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+        height: 300px; 
+        }
   </style>
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="background-color:  #000;">
   <div class="container-fluid">
     <div class="navbar-header" style="height: 50px;">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -53,9 +95,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#Course">Courses</a></li>
+        <li><a href="/showProfile">Profile</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/notify"><span class="fa fa-bell" style="font-size:17px;color:whitesmoke"></span>Notification</a></li>
@@ -68,15 +110,138 @@
 <div class="container-fluid text-center" style="padding: 6.5px;">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
+    <p style="font-size: large;color: #000;border-style: dashed;">Online course provider</p>
+      <p><a class="btn btn-info" href="https://udemy.com">Udemey</a></p>
+      <p><a class="btn btn-info" href="https://internshala.com">Internshala</a></p>
+      <p><a class="btn btn-info" href="https://nptel.ac.in">NPTEL</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>Welcome</h1>
+      <h1 style="color: #e67300;">Welcome</h1>
       <p>A virtual classroom is a teaching and learning environment where participants can interact, communicate, view and discuss presentations, and engage with learning resources while working in groups, all in an online setting. The medium is often through a video conferencing application that allows multiple users to be connected at the same time through the Internet, which allows users from virtually anywhere to participate.</p>
       <hr>
-      <h3>Courses</h3>
+      <div id="Course">
+          <h2 style="color: #e67300;">Courses</h2>
+          <div class="row">
+              <div class="column">
+                <div class="card" style="margin-left: 10%;margin-top: 5%;">
+                    <h1>Complete nodejs developer course</h1>
+                    <p class="price"><i class="fa fa-rupee"></i>420</p>
+                    <p>Learn Node.js by building real world application with node,express,mongodb and more!!</p>
+                    <span style="color: chocolate;">4.1</span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <p><a class="btn btn-primary" href="https://www.udemy.com/course/the-complete-nodejs-developer-course-2/">View Course</a></p>
+                  </div>
+              </div>
+              <div class="column">
+                <div class="card" style="margin-left: 10%;margin-top: 5%;">
+                    <h1>Complete nodejs developer course</h1>
+                    <p class="price"><i class="fa fa-rupee"></i>420</p>
+                    <p>Learn Node.js by building real world application with node,express,mongodb and more!!</p>
+                    <span style="color: chocolate;">4.1</span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <p><a class="btn btn-primary" href="https://www.udemy.com/course/the-complete-nodejs-developer-course-2/">View Course</a></p>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column">
+              <div class="card" style="margin-left: 10%;margin-top: 10%;">
+                  <h1>Complete nodejs developer course</h1>
+                  <p class="price"><i class="fa fa-rupee"></i>420</p>
+                  <p>Learn Node.js by building real world application with node,express,mongodb and more!!</p>
+                  <span style="color: chocolate;">4.1</span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <p><a class="btn btn-primary" href="https://www.udemy.com/course/the-complete-nodejs-developer-course-2/">View Course</a></p>
+                </div>
+            </div>
+            <div class="column">
+              <div class="card" style="margin-left: 10%;margin-top: 10%;">
+                  <h1>Complete nodejs developer course</h1>
+                  <p class="price"><i class="fa fa-rupee"></i>420</p>
+                  <p>Learn Node.js by building real world application with node,express,mongodb and more!!</p>
+                  <span style="color: chocolate;">4.1</span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <p><a class="btn btn-primary" href="https://www.udemy.com/course/the-complete-nodejs-developer-course-2/">View Course</a></p>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="column">
+              <div class="card" style="margin-left: 10%;margin-top: 10%;">
+                  <h1>Complete nodejs developer course</h1>
+                  <p class="price"><i class="fa fa-rupee"></i>420</p>
+                  <p>Learn Node.js by building real world application with node,express,mongodb and more!!</p>
+                  <span style="color: chocolate;">4.1</span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <p><a class="btn btn-primary" href="https://www.udemy.com/course/the-complete-nodejs-developer-course-2/">View Course</a></p>
+                </div>
+            </div>
+            <div class="column">
+              <div class="card" style="margin-left: 10%;margin-top: 10%;">
+                  <h1>Complete nodejs developer course</h1>
+                  <p class="price"><i class="fa fa-rupee"></i>420</p>
+                  <p>Learn Node.js by building real world application with node,express,mongodb and more!!</p>
+                  <span style="color: chocolate;">4.1</span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <p><a class="btn btn-primary" href="https://www.udemy.com/course/the-complete-nodejs-developer-course-2/">View Course</a></p>
+              </div>
+          </div>
+        </div>
+        <div class="row" style="padding-bottom:10px">
+            <div class="column">
+              <div class="card" style="margin-left: 10%;margin-top: 10%;">
+                  <h1>Complete nodejs developer course</h1>
+                  <p class="price"><i class="fa fa-rupee"></i>420</p>
+                  <p>Learn Node.js by building real world application with node,express,mongodb and more!!</p>
+                  <span style="color: chocolate;">4.1</span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <p><a class="btn btn-primary" href="https://www.udemy.com/course/the-complete-nodejs-developer-course-2/">View Course</a></p>
+                </div>
+            </div>
+            <div class="column">
+              <div class="card" style="margin-left: 10%;margin-top: 10%;">
+                  <h1>Complete nodejs developer course</h1>
+                  <p class="price"><i class="fa fa-rupee"></i>420</p>
+                  <p>Learn Node.js by building real world application with node,express,mongodb and more!!</p>
+                  <span style="color: chocolate;">4.1</span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <p><a class="btn btn-primary" href="https://www.udemy.com/course/the-complete-nodejs-developer-course-2/">View Course</a></p>
+              </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-sm-2 sidenav">
       <div class="well">
@@ -89,7 +254,7 @@
   </div>
 </div>
 
-<footer class="container-fluid text-center">
+<footer class="container-fluid text-center" id="about" style="background-color:  #000;">
   <p style="font-size: 20px;">&copy Classroom</p>
 </footer>
 
