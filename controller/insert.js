@@ -13,7 +13,7 @@ const Post1 = require('../model/insert');
 const Profile = require('../model/profile');
 const {uniqueEmail,uniqueEmail1} = require('./externalFunctions');
 global.email = undefined;
-global.na = null;
+let na = null;
 
 insert.use(bodyparser.urlencoded({extended:true}));
 insert.post('/',(req,res) => {
@@ -185,57 +185,55 @@ notify.get('/',(req,res) => {
 
 updateCompletedCourse.use(bodyparser.urlencoded({extended:true}));
 updateCompletedCourse.post('/',(req,res) => {
-    email = "dharan@gmail.com";
-    const name = Post1.findOne({email : email}).select();
+    // email = "dharan@gmail.com";
+    const name =Post1.findOne({email : email}).select();
     name.then((body) => {
         na=body.firstname+" "+body.lastname;
-    });
-    console.log(na);
-    const val = {
-        email : email,
-        name : na,
-        course1 : req.body.course1,
-        course2 : req.body.course2,
-        course3 : req.body.course3
-    };
-    console.log(val);
-    res.send(na);
-    const post = new CompletedCourse(val);
-    const find = CompletedCourse.findOne({email :email}).select();
-    find.then((result,err) => {
-        if(err){
-            res.json({
-                Error : "Notfound"
-            })
-        }
-        else{
-            if(result){
-                CompletedCourse.updateOne({email : email},{
-                    course1 : req.body.course1,
-                    course2 : req.body.course2,
-                    course3 : req.body.course3
-                }).then((su,er) => {
-                    if(er){
-                        res.json({
-                            Error : er
-                        })
-                    }
-                    res.status(200).sendFile(path.resolve("./Apps/homePage.html"));
-                });
+        const val = {
+            current : email,
+            email : "generalToAll",
+            name : na,
+            course1 : req.body.course1,
+            course2 : req.body.course2,
+            course3 : req.body.course3
+        };
+        const post = new CompletedCourse(val);
+        const find = CompletedCourse.findOne({current : email,name : na}).select();
+        find.then((result,err) => {
+            if(err){
+                res.json({
+                    Error : "Notfound"
+                })
             }
             else{
-                post.save((err,sucess) => {
-                    if(err){
-                        res.json({
-                            Error : err
-                        });
-                    }
-                    res.status(200).sendFile(path.resolve("./Apps/homePage.html"));
-                });
+                if(result){
+                    CompletedCourse.updateOne({current: email,name : na},{
+                        course1 : req.body.course1,
+                        course2 : req.body.course2,
+                        course3 : req.body.course3
+                    }).then((su,er) => {
+                        if(er){
+                            res.json({
+                                Error : er
+                            })
+                        }
+                        res.status(200).sendFile(path.resolve("./Apps/homePage.html"));
+                    });
+                }
+                else{
+                    post.save((err,sucess) => {
+                        if(err){
+                            res.json({
+                                Error : err
+                            });
+                        }
+                        res.status(200).sendFile(path.resolve("./Apps/homePage.html"));
+                    });
+                }
             }
-        }
-    })
-
+        })
+    });
+    
 })
 
 module.exports = {
