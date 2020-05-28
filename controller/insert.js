@@ -71,10 +71,10 @@ updateProfile.post('/',(req,res) => {
         post.save((err,result)=>{
             if(err){
                 res.json({
-                    error : err
+                    Message : "Please fill all the fields!!!!"
                 })
             }
-            res.sendFile(path.resolve("./Apps/showProfile.html"));
+            res.sendFile(path.resolve("./Apps/profile.html"));
         })
 
     }).catch((error) => {
@@ -89,9 +89,10 @@ showProfile.get('/',(req,res) => {
     // email="dharan@gmail.com"
     function respond(result,proRes){
         var html = "<html>";
-        html += "<head><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\"></head><body>";
+        html += "<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\"><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\"></head><body>";
         html += "<style>.navbar {height: 90px;background-color: #333; color: whitesmoke;margin-bottom: 15px;text-align: center;font-size: 30px;display: flex;justify-content: center;align-items: center;}</style>";
         html += "<h6 class=\"navbar\">Personal Detail</h6>"
+        html += "<center><i class=\"fa fa-user\" style=\"font-size:100px;color : burlywood\"></i></center>";
         html += "<div style=\"margin-top:3%;margin-left:39%;margin-right:30%;font-size:25px;\"><label>Name            : "+result.firstname+" "+result.lastname+"</label><br>";
         html += "<label>Roll Number     : "+proRes.rollnumber+"</label><br>";
         html += "<label>Date of Birth   : "+proRes.dob+"</label><br>";
@@ -115,6 +116,7 @@ showProfile.get('/',(req,res) => {
 notify.use(bodyparser.urlencoded({extended:true}));
 notify.get('/',(req,res) => {
     const general = "generalToAll";
+    // email = "dharan@gmail.com";
     const gen = notificationData.findOne({email : general}).select();
     global.comp = "";
     gen.then((com1,err1) => {
@@ -137,8 +139,10 @@ notify.get('/',(req,res) => {
                 }
                 else{
                     comp+="<html><head><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\">";
-                    comp+="<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\"></head><body style =\"margin-left : 30%;margin-right : 30%; border : 1px solid black;padding : 10px;\">"
-                    comp+="<center><span class=\"fa fa-bell\" style=\"font-size:40px;color:black\"></span><h1 style=\"margin-left:7%;color : Orange;\">General Notification</h1></center>"
+                    comp+="<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\"></head><body style =\"margin-left : 30%;margin-right : 30%; border : 1px solid black;\">"
+                    comp += "<style>.navbar {height: 90px;background-color: #333; color: whitesmoke;margin-bottom: 15px;text-align: center;font-size: 30px;display: flex;justify-content: center;align-items: center;}</style>";
+                    comp += "<h6 class=\"navbar\">Notification</h6>"
+                    comp+="<div style=\"padding : 10px;\"><center><span class=\"fa fa-bell\" style=\"font-size:40px;color:black\"></span><h1 style=\"color : burlywood;\">General</h1></center>"
                     if(com1.length){
                         for(let i=0;i<com1.length;i++){
                             respond(com1[i]);
@@ -152,7 +156,7 @@ notify.get('/',(req,res) => {
                             respond(com1);
                         }
                     }
-                    comp+="<center><h1 style=\"color : Orange;\">Specified Notification</h1></center>"
+                    comp+="<center><h1 style=\"color : burlywood;\">Personal</h1></center>"
                     if(com.length){
                         for(let i=0;i<com.length;i++){
                             respond(com[i]);
@@ -161,14 +165,14 @@ notify.get('/',(req,res) => {
                     else{
                         console.log(com);
                         if(com.title==undefined){
-                            comp+="<h2>!!!!!No Specified Notification!!!!!"
+                            comp+="<h2>!!!!!No Personal Notification!!!!!"
                         }
                         else{
                             respond(com);
                         }
                     }
                     comp+="<center><ul class=\"nav justify-content-center\" style=\"margin-top:5%;font-size:25px;\"><li class=\"nav-item\"><a class=\"nav-link active\"href=\"/home\">HOME</a></li><li class=\"nav-item\"></li></ul></center>";
-                    comp+="</body></html>"
+                    comp+="</div></body></html>"
                     res.send(comp);
                 }
             })
