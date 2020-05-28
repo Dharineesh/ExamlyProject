@@ -163,7 +163,6 @@ notify.get('/',(req,res) => {
                         }
                     }
                     else{
-                        console.log(com);
                         if(com.title==undefined){
                             comp+="<h2>!!!!!No Personal Notification!!!!!"
                         }
