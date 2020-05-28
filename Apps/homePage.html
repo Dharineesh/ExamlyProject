@@ -244,18 +244,30 @@
       </div>
     </div>
     <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>ADS</p>
-      </div>
-      <div class="well">
-        <p>ADS</p>
-      </div>
-    </div>
+        <form method="POST" action="/updateCompletedCourse">
+            <div class="from-group">
+                <p style="font-size: large;color: #000;border-style: dashed;"> Update Completed Course</p>
+              <div class="input-group-text">
+                <input type="checkbox" name="course1" value="nodejs" aria-label="Checkbox for following text input"><span> Nodejs</span>
+              </div>
+              <div class="input-group-text">
+                <input type="checkbox" name="course2" value="golang" aria-label="Checkbox for following text input"><span> GoLang </span>
+              </div>
+              <div class="input-group-text">
+                <input type="checkbox" name="course3" value="react" aria-label="Checkbox for following text input"><span> React </span>
+              </div>
+              <button class="btn btn-warning" type="submit">Update</button>
+            </div>
+          </div>
+          
+        </form>
   </div>
 </div>
 
-<footer class="container-fluid text-center" id="about" style="background-color:  #000;">
+<footer class="container-fluid text-center" id="about" style="background-color:  #000; height: 120px;">
   <p style="font-size: 20px;">&copy Classroom</p>
+  <p style="font-size: 20px;"><span class="fa fa-phone"></span> +91 99999 55555 </p>
+  <p style="font-size: 20px;"><span class="fa fa-envelope"></span> classroom@college.ac.in </p>
 </footer>
 
 </body>

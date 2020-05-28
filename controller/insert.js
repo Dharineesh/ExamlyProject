@@ -3,10 +3,12 @@ const bodyparser = require('body-parser');
 const insert = express.Router();
 const notify = express.Router();
 const verify = express.Router();
+const updateCompletedCourse = express.Router();
 const updateProfile = express.Router();
 const showProfile = express.Router();
 const path = require('path');
 const notificationData = require('../model/notify');
+const CompletedCourse = require('../model/updateCourse');
 const Post1 = require('../model/insert');
 const Profile = require('../model/profile');
 const {uniqueEmail,uniqueEmail1} = require('./externalFunctions');
@@ -178,6 +180,54 @@ notify.get('/',(req,res) => {
         }
     })
 })
+
+updateCompletedCourse.use(bodyparser.urlencoded({extended:true}));
+updateCompletedCourse.post('/',(req,res) => {
+    email = "dharan@gmail.com";
+    const val = {
+        email : email,
+        course1 : req.body.course1,
+        course2 : req.body.course2,
+        course3 : req.body.course3
+    }
+    const post = new CompletedCourse(val);
+    const find = CompletedCourse.findOne({email : email}).select();
+    find.then((result,err) => {
+        if(err){
+            res.json({
+                Error : "Notfound"
+            })
+        }
+        else{
+            if(result){
+                CompletedCourse.updateOne({email:email},{
+                    course1 : req.body.course1,
+                    course2 : req.body.course2,
+                    course3 : req.body.course3
+                }).then((su,er) => {
+                    if(er){
+                        res.json({
+                            Error : er
+                        })
+                    }
+                    res.status(200).sendFile(path.resolve("./Apps/homePage.html"));
+                });
+            }
+            else{
+                post.save((err,sucess) => {
+                    if(err){
+                        res.json({
+                            Error : err
+                        });
+                    }
+                    res.status(200).sendFile(path.resolve("./Apps/homePage.html"));
+                });
+            }
+        }
+    })
+
+})
+
 module.exports = {
-    insert,verify,updateProfile,showProfile,notify
+    insert,verify,updateProfile,showProfile,notify,updateCompletedCourse
 }
