@@ -19,4 +19,7 @@ SIGNUP : Signup page consist of Firstname , Lastname , Email and Password.
 
 NOTIFICATION : Notification will be triggered when the following happens:
 			1) A new course is available for subset of students
-			2) 
+			2) A class wide notification is triggered by staff (email : generalToAll)
+			3) When a student completes a course
+
+ALGORITHM FLOW :
