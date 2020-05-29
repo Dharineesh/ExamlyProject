@@ -119,7 +119,7 @@ showProfile.get('/',(req,res) => {
 notify.use(bodyparser.urlencoded({extended:true}));
 notify.get('/',(req,res) => {
     const general = "generalToAll";
-    // email = "dharan@gmail.com";
+    email = "dharan@gmail.com";
     const gen = notificationData.findOne({email : general}).select();
     const completed = CompletedCourse.find
     global.comp = "";
@@ -180,13 +180,14 @@ notify.get('/',(req,res) => {
                         comp += "<style>.navbar {height: 90px;background-color: #333; color: whitesmoke;margin-bottom: 15px;text-align: center;font-size: 30px;display: flex;justify-content: center;align-items: center;}</style>";
                         comp += "<h6 class=\"navbar\">Notification</h6>"
                         comp+="<div style=\"padding : 10px;\"><center><span class=\"fa fa-bell\" style=\"font-size:40px;color:black\"></span><h1 style=\"color : burlywood;\">General</h1></center>"
-                        if(com1.length||com2.length){
+                        if(com1.length&&com2.length){
                             for(let i=0;i<com1.length;i++){
                                 respond(com1[i]);
                             }
-                            // for(let i=0;i<com2.length;i++){
-                            //     respond1(com2[i]);
-                            // }
+                            for(let i=0;i<com2.length;i++){
+                                respond1(com2[i]);
+                                comp +="<hr>"
+                            }
                         }
                         else{
                             if(com1.title==undefined&&!com2.length){
@@ -194,6 +195,10 @@ notify.get('/',(req,res) => {
                             }
                             else{
                                 respond(com1);
+                                for(let i=0;i<com2.length;i++){
+                                    respond1(com2[i]);
+                                    comp +="<hr>"
+                                }
                             }
                         }
                         comp+="<center><h1 style=\"color : burlywood;\">Personal</h1></center>"
