@@ -6,6 +6,7 @@ const verify = express.Router();
 const updateCompletedCourse = express.Router();
 const updateProfile = express.Router();
 const showProfile = express.Router();
+const flash = require('connect-flash');
 const path = require('path');
 const notificationData = require('../model/notify');
 const CompletedCourse = require('../model/updateCourse');
@@ -29,6 +30,7 @@ insert.post('/',(req,res) => {
             res.status(200).sendFile(path.resolve('./index.html'));
         });
     }).catch((error) =>{
+        // req.flash("Email already found");
         return res.json({
             status : 401,
             message : "Email already taken"
