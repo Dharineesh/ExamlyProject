@@ -4,8 +4,17 @@ const {insert,verify,updateProfile} = require('./controller/insert');
 const {showProfile,notify,updateCompletedCourse} = require('./controller/insert');
 const bodyparser = require('body-parser');
 const dotenv = require('dotenv');
+// const io = require('socket.io');
 dotenv.config();
 
+// io.on('connection', function(socket) {
+//     console.log('A user connected');
+ 
+//     socket.on('disconnect', function () {
+//        console.log('A user disconnected');
+//     });
+//  });
+ 
 const router = express.Router();
 app.get('/',(req,res)=>{
     res.sendfile("index.html");
