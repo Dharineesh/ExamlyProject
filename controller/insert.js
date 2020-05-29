@@ -91,7 +91,6 @@ updateProfile.post('/',(req,res) => {
 
 showProfile.use(bodyparser.urlencoded({extended:true}));
 showProfile.get('/',(req,res) => {
-    // email="dharan@gmail.com"
     function respond(result,proRes){
         var html = "<html>";
         html += "<head><link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\"><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\"></head><body>";
@@ -121,7 +120,6 @@ showProfile.get('/',(req,res) => {
 notify.use(bodyparser.urlencoded({extended:true}));
 notify.get('/',(req,res) => {
     const general = "generalToAll";
-    // email = "dharan@gmail.com";
     const gen = notificationData.findOne({email : general}).select();
     const completed = CompletedCourse.find
     global.comp = "";
@@ -188,6 +186,7 @@ notify.get('/',(req,res) => {
                             }
                             for(let i=0;i<com2.length;i++){
                                 respond1(com2[i]);
+                                comp += "<h5>Completed On : "+com2[i].date+"<h5>";
                                 comp +="<hr>"
                             }
                         }
@@ -199,6 +198,7 @@ notify.get('/',(req,res) => {
                                 respond(com1);
                                 for(let i=0;i<com2.length;i++){
                                     respond1(com2[i]);
+                                    comp += "<h5>On "+com2[i].date+"<h5>";
                                     comp +="<hr>"
                                 }
                             }
@@ -231,6 +231,8 @@ updateCompletedCourse.use(bodyparser.urlencoded({extended:true}));
 updateCompletedCourse.post('/',(req,res) => {
     // email = "dharan@gmail.com";
     const name =Post1.findOne({email : email}).select();
+    const curDate = new Date();
+    // res.send(curDate);
     name.then((body) => {
         na=body.firstname+" "+body.lastname;
         const val = {
@@ -239,7 +241,8 @@ updateCompletedCourse.post('/',(req,res) => {
             name : na,
             course1 : req.body.course1,
             course2 : req.body.course2,
-            course3 : req.body.course3
+            course3 : req.body.course3,
+            date : curDate
         };
         const post = new CompletedCourse(val);
         const find = CompletedCourse.findOne({current : email,name : na}).select();

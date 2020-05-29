@@ -22,5 +22,9 @@ module.exports = mongoose.model("CompletedCourse",{
     },
     course3 : {
         type : String
+    },
+    date : {
+        type : Date,
+        required : true
     }
 });
