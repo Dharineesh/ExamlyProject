@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 
-mongoose.connect(process.env.MONGO_URL,{ 
+mongoose.connect("mongodb+srv://goodtimes_pass:Passwordno1!@cluster0-ittto.mongodb.net/test?retryWrites=true&w=majority",{ 
     useNewUrlParser: true,
     useUnifiedTopology: true 
  });
