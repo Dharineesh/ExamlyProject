@@ -127,6 +127,32 @@ notify.get('/',(req,res) => {
         function respond(data){
             comp+="<h2>"+data.title+"</h2><h4>"+data.detail+"</h4><hr>"
         }
+        function respond1(data){
+            comp +="<h2>"+data.name+"</h2>";
+            if(data.course1&&data.course2&&data.course3){
+                comp += "<h4>Completed courses in "+data.course1+" "+data.course2+" "+data.course3+"</h4>";   
+            }
+            else if(data.course1&&data.course2){
+                comp += "<h4>Completed courses in "+data.course1+" "+data.course2+"</h4>";
+            }
+            else if(data.course1&&data.course3){
+                comp += "<h4>Completed courses in "+data.course1+" "+data.course3+"</h4>";
+            }
+            else if(data.course3&&data.course2){
+                comp += "<h4>Completed courses in "+data.course3+" "+data.course2+"</h4>";
+            }
+            else if(data.course1){
+                comp += "<h4>Completed courses in "+data.course1+"</h4>";
+            }
+            else if(data.course2){
+                comp += "<h4>Completed courses in "+data.course2+"</h4>";
+            }
+            else if(data.course3){
+                comp += "<h4>Completed courses in "+data.course3+"</h4>";
+            }
+            else    
+                return;
+        }
         if(err1){
             res.json({
                 Message : "Currently no notification availabel!!"
@@ -142,46 +168,57 @@ notify.get('/',(req,res) => {
                     });
                 }
                 else{
-                    comp+="<html><head><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\">";
-                    comp+="<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\"></head><body style =\"margin-left : 30%;margin-right : 30%; border : 1px solid black;\">"
-                    comp += "<style>.navbar {height: 90px;background-color: #333; color: whitesmoke;margin-bottom: 15px;text-align: center;font-size: 30px;display: flex;justify-content: center;align-items: center;}</style>";
-                    comp += "<h6 class=\"navbar\">Notification</h6>"
-                    comp+="<div style=\"padding : 10px;\"><center><span class=\"fa fa-bell\" style=\"font-size:40px;color:black\"></span><h1 style=\"color : burlywood;\">General</h1></center>"
-                    if(com1.length){
-                        for(let i=0;i<com1.length;i++){
-                            respond(com1[i]);
-                        }
-                    }
-                    else{
-                        if(com1.title==undefined){
-                            comp+="<h2>!!!!!No General Notification!!!!!"
-                        }
-                        else{
-                            respond(com1);
-                        }
-                    }
-                    comp+="<center><h1 style=\"color : burlywood;\">Personal</h1></center>"
-                    if(com.length){
-                        for(let i=0;i<com.length;i++){
-                            respond(com[i]);
-                        }
-                    }
-                    else{
-                        if(com.title==undefined){
-                            comp+="<h2>!!!!!No Personal Notification!!!!!"
+                    const  find = CompletedCourse.find({email : "generalToAll"}).select();
+                    find.then((com2,err2)=>{
+                        // res.send(com2);
+                        // if(!com2.length){
+
+                        //     console.log(com2);
+                        // }
+                        comp+="<html><head><link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css\" integrity=\"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk\" crossorigin=\"anonymous\">";
+                        comp+="<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\"></head><body style =\"margin-left : 30%;margin-right : 30%; border : 1px solid black;\">"
+                        comp += "<style>.navbar {height: 90px;background-color: #333; color: whitesmoke;margin-bottom: 15px;text-align: center;font-size: 30px;display: flex;justify-content: center;align-items: center;}</style>";
+                        comp += "<h6 class=\"navbar\">Notification</h6>"
+                        comp+="<div style=\"padding : 10px;\"><center><span class=\"fa fa-bell\" style=\"font-size:40px;color:black\"></span><h1 style=\"color : burlywood;\">General</h1></center>"
+                        if(com1.length||com2.length){
+                            for(let i=0;i<com1.length;i++){
+                                respond(com1[i]);
+                            }
+                            // for(let i=0;i<com2.length;i++){
+                            //     respond1(com2[i]);
+                            // }
                         }
                         else{
-                            respond(com);
+                            if(com1.title==undefined&&!com2.length){
+                                comp+="<h2>!!!!!No General Notification!!!!!"
+                            }
+                            else{
+                                respond(com1);
+                            }
                         }
-                    }
-                    comp+="<center><ul class=\"nav justify-content-center\" style=\"margin-top:5%;font-size:25px;\"><li class=\"nav-item\"><a class=\"btn btn-primary\"href=\"/home\">HOME</a></li><li class=\"nav-item\"></li></ul></center>";
-                    comp+="</div></body></html>"
-                    res.send(comp);
+                        comp+="<center><h1 style=\"color : burlywood;\">Personal</h1></center>"
+                        if(com.length){
+                            for(let i=0;i<com.length;i++){
+                                respond(com[i]);
+                            }
+                        }
+                        else{
+                            if(com.title==undefined){
+                                comp+="<h2>!!!!!No Personal Notification!!!!!"
+                            }
+                            else{
+                                respond(com);
+                            }
+                        }
+                        comp+="<center><ul class=\"nav justify-content-center\" style=\"margin-top:5%;font-size:25px;\"><li class=\"nav-item\"><a class=\"btn btn-primary\"href=\"/home\">HOME</a></li><li class=\"nav-item\"></li></ul></center>";
+                        comp+="</div></body></html>"
+                        res.send(comp);
+                    });
                 }
-            })
+            });
         }
-    })
-})
+    });
+});
 
 updateCompletedCourse.use(bodyparser.urlencoded({extended:true}));
 updateCompletedCourse.post('/',(req,res) => {
