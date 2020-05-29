@@ -37,4 +37,4 @@ app.use('/updateProfile',updateProfile);
 app.use('/showProfile',showProfile);
 app.use('/notify',notify);
 app.use('/updateCompletedCourse',updateCompletedCourse)
-app.listen(process.env.PORT || 4000);
+app.listen(process.env.PORT);
