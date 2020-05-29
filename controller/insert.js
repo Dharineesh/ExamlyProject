@@ -111,6 +111,14 @@ showProfile.get('/',(req,res) => {
     const profile = Profile.findOne({email : email}).select();
     post.then((result) => {
         profile.then((proRes) => {
+            if(!proRes){
+                    res.json({
+                        Message : "Profile is not updated!!!"
+                    })
+
+            }
+            // if(e){
+            // }
             res.send(respond(result,proRes));
 
         })
