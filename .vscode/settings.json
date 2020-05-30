@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/aab58066-8daa-410f-b511-a16536ffdbdc/resourceGroups/rsg-1dv-nodejsapp-01/providers/Microsoft.Web/sites/nodejsproject-dharan",
-    "appService.deploySubpath": "."
-}
